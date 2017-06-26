@@ -6,12 +6,41 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.16.0",
+    "connect-flash": "0.1.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
+    "dotenv": "4.0.0",
     "ejs": "~2.5.5",
     "express": "~4.14.1",
+    "mongoose": "4.11.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.2"
-  }
+    "passport": "0.3.2",
+    "passport-facebook": "2.1.1",
+    "passport-google-oauth": "1.0.0",
+    "passport-local": "1.0.0",
+    "passport-twitter": "1.0.4",
+    "serve-favicon": "~2.3.2",
+    "shortid": "2.2.8"
+  },
+  "description": "Lean template for web application projects for node.js express and passport",
+  "main": "./bin/www",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boxpositron/node-lean-template.git"
+  },
+  "keywords": [
+    "node.js",
+    "passportjs",
+    "express",
+    "mongoose"
+  ],
+  "author": "Ibia David",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boxpositron/node-lean-template/issues"
+  },
+  "homepage": "https://github.com/boxpositron/node-lean-template#readme"
 }

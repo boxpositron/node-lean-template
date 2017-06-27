@@ -149,8 +149,8 @@ module.exports = function(passport) {
     // =========================================================================
     passport.use(new FacebookStrategy({
 
-            consumerKey: process.env.facebookApiKey,
-            consumerSecret: process.env.facebookApiSecret,
+            clientID: process.env.facebookApiKey,
+            clientSecret: process.env.facebookApiSecret,
             callbackURL: process.env.facebookCallbackURL,
             passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
         },

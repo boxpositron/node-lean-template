@@ -6,8 +6,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
-
+var mongoose = require('mongoose');
 var passport = require('passport');
+var session = require('express-session');
+
+const MongoStore = require('connect-mongo')(session);
 
 require('./config/passport')(passport);
 
@@ -25,7 +28,7 @@ mongoose.connect(process.env.MONGODB_URI, function(err) {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -34,16 +37,22 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('express-session')({
-    key: 'boxmarshall',
+var options = {
+  mongooseConnection: mongoose.connection
+}
+
+app.use(session({
+    key: process.env.SESSION_KEY,
     resave: true,
     saveUninitialized: true,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
     },
     secret: process.env.SESSION_SECRET,
-    store: require('mongoose-session')(mongoose)
+    store: new MongoStore(options)
 }));
+
+
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
@@ -73,7 +82,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error',{title:"Error"});
 });
 
 module.exports = app;

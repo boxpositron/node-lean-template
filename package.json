@@ -23,7 +23,7 @@
     "passport-google-oauth": "1.0.0",
     "passport-local": "1.0.0",
     "passport-twitter": "1.0.4",
-    "serve-favicon": "~2.3.2",
+    "serve-favicon": "~2.4.5",
     "shortid": "2.2.8"
   },
   "description": "Lean template for web application projects for node.js express and passport",
